@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal 7°BPM/M - 1° Tenente PM Calegari</title>
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg" id="bg" aria-hidden="true">
+  <div class="slide on" style="background-image:url('img/fundo-1.jpg')"></div>
+  <div class="slide" style="background-image:url('img/fundo-2.jpg')"></div>
+  <div class="slide" style="background-image:url('img/fundo-3.jpg')"></div>
+  <div class="shade"></div>
+</div>
+
+<header class="nav" id="nav" hidden>
+  <a class="brand" href="#inicio">
+    <img src="img/logo-7bpm.png" alt="7°BPM/M"><img src="img/escudo-pmesp.png" alt="PMESP">
+    <span><b>7°BPM/M</b><small>1° Ten PM Calegari</small></span>
+  </a>
+  <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><i></i><i></i></button>
+  <nav class="links" id="links"></nav>
+</header>
+
+<main id="main">
+  <!-- LOGIN / CADASTRO -->
+  <section class="view" id="v-auth">
+    <div class="auth">
+      <div class="auth-logos"><img src="img/logo-7bpm.png" alt=""><img src="img/escudo-pmesp.png" alt=""></div>
+      <h1>Portal 7°BPM/M</h1>
+      <p class="sub">1° Tenente PM Calegari · Acesso restrito aos membros</p>
+      <div class="tabs"><button class="tab on" data-tab="login">Entrar</button><button class="tab" data-tab="cadastro">Criar conta</button></div>
+      <p class="notice" id="cfg-warn" hidden>Configure o <b>config.js</b> com os dados do Supabase (veja o LEIA-ME.md).</p>
+
+      <form id="f-login" class="card form" autocomplete="on">
+        <label>Nome de usuário (Discord)<input id="l-user" placeholder="@usuario" autocomplete="username" required></label>
+        <label>Senha<input id="l-pass" type="password" autocomplete="current-password" required></label>
+        <p class="err" id="l-err" hidden></p>
+        <button class="btn" id="l-btn">Entrar</button>
+      </form>
+
+      <form id="f-cad" class="card form" autocomplete="off" hidden>
+        <label>Nome e Sobrenome <small>(o mesmo do Discord da PM)</small><input id="c-nome" placeholder="Ex: Rafael Sabbatino" required></label>
+        <label>Nome de usuário <small>(o mesmo do Discord)</small><input id="c-user" placeholder="@usuario" required></label>
+        <div class="grp"><span>Idade real</span><div class="chips" id="c-idade"></div></div>
+        <div class="grp"><span>Como entrou no Batalhão</span><div class="chips" id="c-entrada"></div></div>
+        <div class="grp"><span>Atual Posto e Graduação</span><div class="chips" id="c-posto"></div></div>
+        <div class="grp"><span>Qual é a sua Companhia</span><div class="chips" id="c-cia"></div></div>
+        <label>Senha <small>(mínimo 8 caracteres)</small><input id="c-pass" type="password" autocomplete="new-password" required></label>
+        <label>Confirmar senha<input id="c-pass2" type="password" autocomplete="new-password" required></label>
+        <p class="err" id="c-err" hidden></p>
+        <button class="btn" id="c-btn">Criar conta</button>
+        <p class="hint">Após criar a conta, ela precisa ser aprovada por um administrador para liberar o site.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- BLOQUEIO (reprovado / vetado) -->
+  <section class="view" id="v-blocked">
+    <div class="auth"><div class="card center">
+      <h2 id="b-title"></h2><p class="sub" id="b-text"></p>
+      <button class="btn ghost" data-logout>Sair</button>
+    </div></div>
+  </section>
+
+  <!-- INÍCIO -->
+  <section class="view" id="v-inicio">
+    <div class="hero">
+      <h1>Bem-Vindo(a) ao Portal Oficial do 7°Batalhão de Polícia Militar Metropolitano!</h1>
+      <p>Este site é destinado exclusivamente para os Membros do Batalhão, aqui você encontrará: Documentações, Informações, Sistemas de Relatório de Serviços e entre outros.</p>
+      <div class="cta"><a class="btn" href="#rso">Realizar RSO</a><a class="btn ghost" href="#galeria">Galeria do Batalhão</a></div>
+    </div>
+    <h2 class="reveal">Nossos Pilares</h2>
+    <p class="sub reveal">Valores Institucionais</p>
+    <div class="grid pillars">
+      <article class="card reveal"><h3>Disciplina</h3><p>A disciplina é a base da instituição militar. O cumprimento rigoroso das normas e regulamentos garante a ordem e a eficiência operacional.</p></article>
+      <article class="card reveal"><h3>Ética e Probidade</h3><p>Atuação pautada na legalidade, moralidade e transparência, preservando a honra da farda e a confiança da sociedade.</p></article>
+      <article class="card reveal"><h3>Dever e Missão</h3><p>O policial militar age com determinação e foco na missão, colocando o cumprimento do dever acima dos interesses pessoais.</p></article>
+      <article class="card reveal"><h3>Hierarquia</h3><p>O respeito à cadeia de comando e à autoridade constituída é fundamento inegociável da vida militar e do bom funcionamento da corporação.</p></article>
+      <article class="card reveal"><h3>Lealdade</h3><p>Fidelidade à Pátria, à instituição, aos superiores, aos pares e aos subordinados — pilar da coesão e do esprit de corps.</p></article>
+    </div>
+  </section>
+
+  <!-- PERFIL -->
+  <section class="view" id="v-perfil">
+    <p class="notice" id="p-pending" hidden>Sua conta está <b>aguardando aprovação</b> de um administrador. Enquanto isso, complete seu perfil. Os demais conteúdos serão liberados após a aprovação.</p>
+    <div class="profile card">
+      <div class="banner" id="p-banner"></div>
+      <div class="pbody">
+        <div class="avatar" id="p-avatar"></div>
+        <h2 id="p-name"></h2>
+        <p class="sub" id="p-user"></p>
+        <div class="tags" id="p-tags"></div>
+        <div class="two">
+          <label class="btn ghost small">Alterar foto<input type="file" id="p-avatar-in" accept="image/*" hidden></label>
+          <label class="btn ghost small">Alterar banner<input type="file" id="p-banner-in" accept="image/*" hidden></label>
+        </div>
+        <label class="bio">Biografia<textarea id="p-bio" rows="4" maxlength="400" placeholder="Fale um pouco sobre você..."></textarea></label>
+        <button class="btn" id="p-save">Salvar biografia</button>
+        <p class="hint">Precisa alterar algo? Contate a Administração do 7°BPM/M</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN -->
+  <section class="view" id="v-admin">
+    <h2>Painel Admin</h2>
+    <p class="sub">Gerencie as contas dos militares.</p>
+    <div class="row">
+      <div class="chips" id="a-filters"></div>
+      <input id="a-search" class="search" placeholder="Buscar nome ou usuário...">
+    </div>
+    <div class="list" id="a-list"></div>
+  </section>
+
+  <!-- PÁGINAS FUTURAS -->
+  <section class="view" id="v-soon">
+    <div class="card center"><h2>Em desenvolvimento</h2><p class="sub">Esta página será liberada em breve.</p></div>
+  </section>
+</main>
+
+<dialog id="dlg" class="card">
+  <form id="f-edit" class="form" method="dialog">
+    <h3>Editar conta</h3>
+    <label>Nome e Sobrenome<input id="e-nome" required></label>
+    <label>Usuário<input id="e-user" required></label>
+    <label>Idade<select id="e-idade"></select></label>
+    <label>Como entrou<select id="e-entrada"></select></label>
+    <label>Posto e Graduação<select id="e-posto"></select></label>
+    <label>Companhia<select id="e-cia"></select></label>
+    <label id="e-role-wrap">Cargo no site<select id="e-role"></select></label>
+    <p class="err" id="e-err" hidden></p>
+    <div class="row"><button type="button" class="btn ghost" id="e-cancel">Cancelar</button><button class="btn" id="e-save">Salvar</button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
