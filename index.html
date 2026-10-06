@@ -47,8 +47,8 @@
         <label>Nome de usuário <small>(o mesmo do Discord)</small><input id="c-user" placeholder="@usuario" required></label>
         <div class="grp"><span>Idade real</span><div class="chips" id="c-idade"></div></div>
         <div class="grp"><span>Como entrou no Batalhão</span><div class="chips" id="c-entrada"></div></div>
-        <div class="grp"><span>Atual Posto e Graduação</span><div class="chips" id="c-posto"></div></div>
-        <div class="grp"><span>Qual é a sua Companhia</span><div class="chips" id="c-cia"></div></div>
+        <label>Atual Posto e Graduação<select id="c-posto" required></select></label>
+        <label>Qual é a sua Companhia<select id="c-cia" required></select></label>
         <label>Senha <small>(mínimo 8 caracteres)</small><input id="c-pass" type="password" autocomplete="new-password" required></label>
         <label>Confirmar senha<input id="c-pass2" type="password" autocomplete="new-password" required></label>
         <p class="err" id="c-err" hidden></p>
@@ -105,15 +105,62 @@
     </div>
   </section>
 
+  <!-- GALERIA -->
+  <section class="view" id="v-galeria">
+    <div class="row spread">
+      <div><h2>Galeria do Batalhão</h2><p class="sub">Registros de operações, treinamentos, solenidades e patrulhamento.</p></div>
+      <button class="btn small" id="g-new" data-newpost hidden>Nova publicação</button>
+    </div>
+    <div class="chips" id="g-tags"></div>
+    <div class="feed" id="g-feed"></div>
+    <div class="more"><button class="btn ghost" id="g-more" hidden>Carregar mais</button></div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="view" id="v-sobre">
+    <h2>Sobre o Batalhão</h2>
+    <p class="callout">O 25°BPM/M - Virtual FiveM segue atuando como 7°BPM/M há mais de 6 meses na Quebrada Paulista!</p>
+    <div class="history">
+      <h3>7º BPM/M — Batalhão 1º Tenente PM Calegari</h3>
+      <p>O 7º Batalhão de Polícia Militar Metropolitano (7º BPM/M), conhecido como o "Batalhão 1º Tenente PM Calegari", recebeu esta denominação em homenagem ao 1º Tenente PM Roberto Calegari de Lima, declarado patrono da unidade pela Lei Estadual nº 13.506/2009.</p>
+    </div>
+    <h2>História e Homenagem</h2>
+    <div class="grid two-col">
+      <article class="card"><h3>Quem foi</h3><p>Nascido em São Paulo, Roberto Calegari de Lima ingressou na Academia de Polícia Militar do Barro Branco em 1979 e tornou-se Aspirante a Oficial em 1981, sendo designado para o 7º BPM/M.</p></article>
+      <article class="card"><h3>O ato heroico</h3><p>Aos 22 anos, no posto de 2º Tenente, liderou uma equipe do Patrulhamento Tático Móvel em atendimento a uma ocorrência de roubo na Avenida Angélica, na capital paulista. Durante o confronto armado com criminosos, demonstrou extrema coragem e foi fatalmente ferido no cumprimento do dever.</p></article>
+      <article class="card"><h3>Promoção póstuma e legado</h3><p>Foi promovido postumamente a 1º Tenente e sepultado no Mausoléu da PMESP. Sua bravura transformou-o em símbolo de honra para a corporação.</p></article>
+      <article class="card"><h3>Reconhecimento oficial</h3><p>O batalhão passou a levar oficialmente seu nome em solenidades marcantes, perpetuando sua memória e servindo de inspiração diária de coragem, lealdade e dedicação à sociedade para os policiais da tropa.</p></article>
+    </div>
+    <h2>Mural de Comandantes</h2>
+    <p class="sub">Os atuais comandantes do batalhão.</p>
+    <div class="grid mural" id="s-mural"></div>
+    <h2>Sobre o 25°BPM/M</h2>
+    <div class="card history">
+      <p>O 25° Batalhão de Polícia Militar Metropolitano — Virtual FiveM é um batalhão com mais de 4 anos de atuação no Roleplay, vindo desde os tempos do MTA e agora consolidado no FiveM. Uma das unidades mais tradicionais e respeitadas da PMESP no cenário de roleplay.</p>
+      <p>Estamos há mais de 6 meses como Rádio Patrulha no Quebrada Paulista, entregando o melhor serviço de policiamento ostensivo, sem alterações, com presença ativa e disciplina operacional. O batalhão segue comandado pelo Coronel PM Rafael Sabbatino e seu Sub Comandante o Tenente Coronel PM Guilherme Oliveira, contando com militares dedicados e comprometidos com a excelência.</p>
+      <p>Nossa missão é clara: servir e proteger com honra, disciplina e comprometimento. A cada dia melhoramos operacionalmente, realizando diversos cursos e treinamentos para garantir um Roleplay Imersivo Policial Militar de qualidade superior.</p>
+    </div>
+  </section>
+
   <!-- ADMIN -->
   <section class="view" id="v-admin">
     <h2>Painel Admin</h2>
-    <p class="sub">Gerencie as contas dos militares.</p>
-    <div class="row">
-      <div class="chips" id="a-filters"></div>
-      <input id="a-search" class="search" placeholder="Buscar nome ou usuário...">
+    <div class="tabs" id="a-tabs"><button class="tab on" data-at="contas">Contas</button><button class="tab" data-at="galeria">Galeria</button><button class="tab" data-at="mural">Mural</button></div>
+    <div id="a-contas">
+      <div class="row">
+        <div class="chips" id="a-filters"></div>
+        <input id="a-search" class="search" placeholder="Buscar nome ou usuário...">
+      </div>
+      <div class="list" id="a-list"></div>
     </div>
-    <div class="list" id="a-list"></div>
+    <div id="a-galeria" hidden>
+      <div class="row"><button class="btn small" data-newpost>Nova publicação</button></div>
+      <div class="list" id="ag-list"></div>
+    </div>
+    <div id="a-mural" hidden>
+      <div class="row"><button class="btn small" id="am-new">Adicionar comandante</button></div>
+      <div class="list" id="am-list"></div>
+    </div>
   </section>
 
   <!-- PÁGINAS FUTURAS -->
@@ -136,6 +183,29 @@
     <div class="row"><button type="button" class="btn ghost" id="e-cancel">Cancelar</button><button class="btn" id="e-save">Salvar</button></div>
   </form>
 </dialog>
+<dialog id="dlg-post" class="card">
+  <form id="f-post" class="form" method="dialog">
+    <h3 id="gp-title">Nova publicação</h3>
+    <label>Título<input id="gp-t" maxlength="80" required></label>
+    <label>Tag<select id="gp-tag"></select></label>
+    <label>Data<input id="gp-date" type="date" required></label>
+    <label>Legenda<textarea id="gp-cap" rows="3" maxlength="500"></textarea></label>
+    <label id="gp-file-wrap">Foto<input id="gp-file" type="file" accept="image/*"></label>
+    <p class="err" id="gp-err" hidden></p>
+    <div class="row"><button type="button" class="btn ghost" id="gp-cancel">Cancelar</button><button class="btn" id="gp-save">Publicar</button></div>
+  </form>
+</dialog>
+<dialog id="dlg-cmd" class="card">
+  <form id="f-cmd" class="form" method="dialog">
+    <h3 id="cd-title">Comandante</h3>
+    <label>Nome<input id="cd-name" maxlength="80" required></label>
+    <label>Posto e Graduação<select id="cd-rank"></select></label>
+    <label>Ordem no mural <small>(menor aparece primeiro)</small><input id="cd-pos" type="number" min="0" value="0"></label>
+    <label>Foto <small>(opcional)</small><input id="cd-file" type="file" accept="image/*"></label>
+    <p class="err" id="cd-err" hidden></p>
+    <div class="row"><button type="button" class="btn ghost" id="cd-cancel">Cancelar</button><button class="btn" id="cd-save">Salvar</button></div>
+  </form>
+</dialog>
 <div class="toast" id="toast" role="status"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -143,3 +213,4 @@
 <script src="app.js"></script>
 </body>
 </html>
+
