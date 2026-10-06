@@ -182,7 +182,7 @@ async function upload(kind, file) {
   const ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "") || "jpg";
   const path = `${me.id}/${kind}-${Date.now()}.${ext}`;
   toast("Enviando...");
-  const { error } = await sb.storage.from("perfil").upload(path, file, { upsert: true, contentType: file.type });
+  const { error } = await sb.storage.from("perfil").upload(path, file, { contentType: file.type });
   if (error) return toast("Falha no envio: " + error.message);
   const url = sb.storage.from("perfil").getPublicUrl(path).data.publicUrl;
   const { error: e2 } = await sb.from("profiles").update({ [kind + "_url"]: url }).eq("id", me.id);
@@ -513,4 +513,3 @@ $$(".reveal").forEach((el, i) => { el.style.transitionDelay = (i % 5) * 80 + "ms
 
 if (sb) sb.auth.onAuthStateChange((ev) => { if (ev === "SIGNED_OUT" && me) { me = null; route(); } });
 boot();
-
